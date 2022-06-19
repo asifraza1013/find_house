@@ -70,7 +70,7 @@
                                     {{ $websiteLang->where('lang_key','remember')->first()->custom_text }}
                                 </label>
                             </div>
-                            <a href="{{ route('forget.password') }}">{{ $websiteLang->where('lang_key','forget_your_pass')->first()->custom_text }}</a>
+                            {{-- <a href="{{ route('forget.password') }}">{{ $websiteLang->where('lang_key','forget_your_pass')->first()->custom_text }}</a> --}}
                         </div>
                         <div class="wsus__reg_forget">
                             <button class="common_btn" type="submit" id="userLoginBtn">{{ $websiteLang->where('lang_key','login')->first()->custom_text }}</button>

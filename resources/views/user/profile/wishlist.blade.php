@@ -47,7 +47,7 @@
                                     <h5> <a href="{{ route('property.details',$item->property->slug) }}">{{ $item->property->title }}</a> </h5>
                                     <p class="address">{{ $item->property->address.', '.$item->property->city->name }}</p>
 
-                                    @php
+                                    {{-- @php
                                         $total_review=$item->property->reviews->where('status',1)->count();
                                         if($total_review > 0){
                                             $avg_sum=$item->property->reviews->where('status',1)->sum('avarage_rating');
@@ -64,9 +64,9 @@
                                             }
 
                                         }
-                                    @endphp
+                                    @endphp --}}
 
-                                    @if ($total_review > 0)
+                                    {{-- @if ($total_review > 0)
                                     <p class="rating">
                                         <span>{{ sprintf("%.1f", $reviewPoint) }}</span>
                                         @for ($i = 1; $i <=5; $i++)
@@ -95,7 +95,7 @@
                                             <span>({{ 0 }} {{ $websiteLang->where('lang_key','review')->first()->custom_text }})</span>
                                         </p>
 
-                                    @endif
+                                    @endif --}}
                                 </td>
 
                                 <td class="purpose">

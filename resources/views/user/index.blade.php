@@ -237,7 +237,7 @@
                 <div class="wsus__single_property_footer d-flex justify-content-between align-items-center">
                   <a href="{{ route('search-property',['page_type' => 'list_view','property_type' => $top_item->propertyType->id]) }}" class="category">{{ $top_item->propertyType->type }}</a>
 
-                @php
+                {{-- @php
                     $total_review=$top_item->reviews->where('status',1)->count();
                     if($total_review > 0){
                         $avg_sum=$top_item->reviews->where('status',1)->sum('avarage_rating');
@@ -252,9 +252,9 @@
                             $halfReview=true;
                         }
                     }
-                @endphp
+                @endphp --}}
 
-                @if ($total_review > 0)
+                {{-- @if ($total_review > 0)
                   <span class="rating">{{ sprintf("%.1f", $reviewPoint) }}
 
                     @for ($i = 1; $i <=5; $i++)
@@ -278,7 +278,7 @@
                         <i class="fal fa-star"></i>
                         @endfor
                     </span>
-                @endif
+                @endif --}}
                 </div>
             </div>
           </div>

@@ -51,16 +51,16 @@
                   <div class="col-xl-6 col-md-6">
                     <input type="text" placeholder="{{ $websiteLang->where('lang_key','phone')->first()->custom_text }}" name="phone" value="{{ $user->phone }}">
                   </div>
-                  <div class="col-xl-6 col-md-6">
+                  {{-- <div class="col-xl-6 col-md-6">
                     <input type="text" placeholder="{{ $websiteLang->where('lang_key','website')->first()->custom_text }}" name="website" value="{{ $user->website }}">
-                  </div>
+                  </div> --}}
                   <div class="col-xl-6 col-md-6">
                     <input type="text" placeholder="{{ $websiteLang->where('lang_key','address')->first()->custom_text }}" name="address" value="{{ $user->address }}">
                   </div>
                   <div class="col-xl-6 col-md-6">
                     <input class="file" type="file" name="image">
                   </div>
-                  <div class="col-xl-6 col-md-6">
+                  {{-- <div class="col-xl-6 col-md-6">
                     <input type="text" placeholder="{{ $websiteLang->where('lang_key','first_icon')->first()->custom_text }}" class="custom-icon-picker" name="icon_one" value="{{ $user->icon_one }}">
                   </div>
                   <div class="col-xl-6 col-md-6">
@@ -89,7 +89,7 @@
 
                   <div class="col-xl-6 col-md-6">
                     <input type="text" placeholder="{{ $websiteLang->where('lang_key','four_link')->first()->custom_text }}" name="link_four" value="{{ $user->link_four }}">
-                  </div>
+                  </div> --}}
 
                   <div class="col-12">
                     <textarea class="form-control summer_note" name="about">{{ $user->about }}</textarea>

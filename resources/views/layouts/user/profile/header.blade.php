@@ -78,21 +78,21 @@
 
                     <li><a href="{{ route('home') }}"><i class="fal fa-globe"></i> {{ $websiteLang->where('lang_key','go_to_homepage')->first()->custom_text }}</a></li>
 
-                    <li><a class="{{ Route::is('user.my.properties') || Route::is('user.property.edit') || Route::is('user.create.property') ? 'dash_active' : '' }}" href="{{ route('user.my.properties') }}"><i class="far fa-list"></i> {{ $websiteLang->where('lang_key','my_property')->first()->custom_text }}</a></li>
+                    {{-- <li><a class="{{ Route::is('user.my.properties') || Route::is('user.property.edit') || Route::is('user.create.property') ? 'dash_active' : '' }}" href="{{ route('user.my.properties') }}"><i class="far fa-list"></i> {{ $websiteLang->where('lang_key','my_property')->first()->custom_text }}</a></li> --}}
 
                     <li><a class="{{ Route::is('user.my-profile') ? 'dash_active' : '' }}" href="{{ route('user.my-profile') }}"><i class="fas fa-user-tie"></i> {{ $websiteLang->where('lang_key','my_profile')->first()->custom_text }}</a></li>
 
-                    <li><a  class="{{ Route::is('user.my-order') || Route::is('user.order.details') ? 'dash_active' : '' }}" href="{{ route('user.my-order') }}"><i class="far fa-list"></i> {{ $websiteLang->where('lang_key','order')->first()->custom_text }}</a></li>
+                    {{-- <li><a  class="{{ Route::is('user.my-order') || Route::is('user.order.details') ? 'dash_active' : '' }}" href="{{ route('user.my-order') }}"><i class="far fa-list"></i> {{ $websiteLang->where('lang_key','order')->first()->custom_text }}</a></li> --}}
 
                     <li><a class="{{ Route::is('user.my-wishlist') ? 'dash_active' : '' }}" href="{{ route('user.my-wishlist') }}"><i class="fas fa-heart"></i> {{ $websiteLang->where('lang_key','wishlist')->first()->custom_text }}</a></li>
 
-                    <li><a class="{{ Route::is('user.pricing.plan') ? 'dash_active' : '' }}" href="{{ route('user.pricing.plan') }}"><i class="fas fa-box-full"></i> {{ $websiteLang->where('lang_key','pricing_plan')->first()->custom_text }}</a></li>
+                    {{-- <li><a class="{{ Route::is('user.pricing.plan') ? 'dash_active' : '' }}" href="{{ route('user.pricing.plan') }}"><i class="fas fa-box-full"></i> {{ $websiteLang->where('lang_key','pricing_plan')->first()->custom_text }}</a></li> --}}
 
 
 
-                    <li><a class="{{ Route::is('user.my-review') || Route::is('user.edit-review') ? 'dash_active' : '' }}" href="{{ route('user.my-review') }}"><i class="fas fa-star"></i> {{ $websiteLang->where('lang_key','my_review')->first()->custom_text }}</a></li>
+                    {{-- <li><a class="{{ Route::is('user.my-review') || Route::is('user.edit-review') ? 'dash_active' : '' }}" href="{{ route('user.my-review') }}"><i class="fas fa-star"></i> {{ $websiteLang->where('lang_key','my_review')->first()->custom_text }}</a></li> --}}
 
-                    <li><a class="{{ Route::is('user.client-review') ? 'dash_active' : '' }}" href="{{ route('user.client-review') }}"><i class="fas fa-star"></i> {{ $websiteLang->where('lang_key','client_review')->first()->custom_text }}</a></li>
+                    {{-- <li><a class="{{ Route::is('user.client-review') ? 'dash_active' : '' }}" href="{{ route('user.client-review') }}"><i class="fas fa-star"></i> {{ $websiteLang->where('lang_key','client_review')->first()->custom_text }}</a></li> --}}
 
                     <li><a href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> {{ $websiteLang->where('lang_key','logout')->first()->custom_text }}</a></li>
               </ul>

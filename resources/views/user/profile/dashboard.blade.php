@@ -10,34 +10,34 @@
             <div class="wsus__manage_dashboard">
                 <h4 class="heading">{{ $websiteLang->where('lang_key','dashboard')->first()->custom_text }}</h4>
                 <div class="row">
-                    <div class="col-xl-4 col-sm-6 col-md-4">
+                    {{-- <div class="col-xl-4 col-sm-6 col-md-4">
                         <div class="wsus__manage_single">
                             <i class="far fa-list"></i>
                             <span>{{ $publishProperty }}</span>
                             <p>{{ $websiteLang->where('lang_key','publish_pro')->first()->custom_text }}</p>
                         </div>
-                    </div>
-                    <div class="col-xl-4 col-sm-6 col-md-4">
+                    </div> --}}
+                    {{-- <div class="col-xl-4 col-sm-6 col-md-4">
                         <div class="wsus__manage_single green">
                           <i class="fab fa-buromobelexperte"></i>
                             <span>{{ $expiredProperty }}</span>
                             <p>{{ $websiteLang->where('lang_key','expired_pro')->first()->custom_text }}</p>
                         </div>
-                    </div>
-                    <div class="col-xl-4 col-sm-6 col-md-4">
+                    </div> --}}
+                    {{-- <div class="col-xl-4 col-sm-6 col-md-4">
                         <div class="wsus__manage_single sky">
                             <i class="far fa-list"></i>
                             <span>{{ $myReviews->count() }}</span>
                             <p>{{ $websiteLang->where('lang_key','my_review')->first()->custom_text }}</p>
                         </div>
-                    </div>
-                    <div class="col-xl-4 col-sm-6 col-md-4">
+                    </div> --}}
+                    {{-- <div class="col-xl-4 col-sm-6 col-md-4">
                       <div class="wsus__manage_single blue">
                           <i class="far fa-list"></i>
                           <span>{{ $clientReviews }}</span>
                           <p>{{ $websiteLang->where('lang_key','client_review')->first()->custom_text }}</p>
                       </div>
-                    </div>
+                    </div> --}}
                     <div class="col-xl-4 col-sm-6 col-md-4">
                         <div class="wsus__manage_single orange">
                             <i class="far fa-list"></i>
@@ -45,13 +45,13 @@
                             <p>{{ $websiteLang->where('lang_key','wishlist')->first()->custom_text }}</p>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-sm-6 col-md-4">
+                    {{-- <div class="col-xl-4 col-sm-6 col-md-4">
                         <div class="wsus__manage_single purple">
                             <i class="far fa-list"></i>
                             <span>{{ $orders->count() }}</span>
                             <p>{{ $websiteLang->where('lang_key','order')->first()->custom_text }}</p>
                         </div>
-                    </div>
+                    </div> --}}
                     @if ($activeOrder)
                     <div class="col-xl-12">
                         @php

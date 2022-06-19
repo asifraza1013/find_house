@@ -152,7 +152,7 @@ window.addEventListener("load",function(){window.wpcc.init({"border":"{{ $modalC
           </div>
         </div>
       </div>
-      <div class="row large_subscribe">
+      {{-- <div class="row large_subscribe">
         <div class="col-xl-4 col-lg-5">
           <div class="large_subscribe_text">
             <h4 class="">{{ $websiteLang->where('lang_key','subscribe_us')->first()->custom_text }}</h4>
@@ -164,7 +164,7 @@ window.addEventListener("load",function(){window.wpcc.init({"border":"{{ $modalC
               <button id="subscribeBtn" type="submit"><i id="subscribe-spinner" class="loading-icon fa fa-spin fa-spinner d-none mt-1"></i>  <i id="angleRight" class="fal fa-angle-right"></i></button>
             </form>
         </div>
-      </div>
+      </div> --}}
     </div>
     <div class="wsus__copyright mt_45">
       <div class="ontainer">

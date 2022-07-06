@@ -76,7 +76,7 @@
 
                     </div>
 
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="seo_title">{{ $websiteLang->where('lang_key','seo_title')->first()->custom_text }}</label>
                         <input type="text" name="seo_title" class="form-control" id="seo_title" value="{{ $blog->seo_title }}">
                     </div>
@@ -84,7 +84,7 @@
                     <div class="form-group">
                         <label for="seo_description">{{ $websiteLang->where('lang_key','seo_des')->first()->custom_text }}</label>
                         <textarea name="seo_description" id="seo_description" cols="30" rows="3" class="form-control" >{{ $blog->seo_description }}</textarea>
-                    </div>
+                    </div> --}}
 
                     <button type="submit" class="btn btn-success">{{ $websiteLang->where('lang_key','update')->first()->custom_text }}</button>
                 </form>

@@ -501,7 +501,7 @@
                 @endif
               @endif
 
-              <div class="col-12">
+              {{-- <div class="col-12">
                 <div class="wsus__property_input">
                     <label for="#">{{ $websiteLang->where('lang_key','seo_title')->first()->custom_text }}</label>
                     <input type="text" name="seo_title" value="{{ $property->seo_title }}">
@@ -512,7 +512,7 @@
                     <label for="#">{{ $websiteLang->where('lang_key','seo_des')->first()->custom_text }}</label>
                     <textarea cols="3" rows="3" name="seo_description">{{ $property->seo_description }}</textarea>
                 </div>
-              </div>
+              </div> --}}
               <div class="col-12">
                 <button type="submit" class="common_btn">{{ $websiteLang->where('lang_key','update')->first()->custom_text }}</button>
               </div>

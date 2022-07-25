@@ -537,70 +537,25 @@ $feature_property=$sections->where('id',4)->first();
         </div>
       </div>
       <div class="row">
-        @foreach ($properties->where('urgent_property',1)->take($urgent_property->content_quantity) as $urgent_item)
+        @foreach ($adsList as $urgent_item)
             @if ($featured_item->expired_date==null)
                 <div class="col-xl-4 col-sm-6 col-lg-4">
                     <div class="wsus__top_properties_item">
                         <div class="row">
                         <div class="col-xl-6">
                             <div class="wsus__top_properties_img">
-                            <img src="{{ asset($urgent_item->thumbnail_image) }}" alt="top properties" class="ifg-fluid w-100">
+                            <img src="{{ asset($urgent_item->images[0]) }}" alt="top properties" class="ifg-fluid w-100">
                             </div>
                         </div>
                         <div class="col-xl-6">
                             <div class="wsus__top_properties_text">
-                            <a href="{{ route('property.details',$urgent_item->slug) }}">{{ $urgent_item->title }}</a>
-
-                                @if ($urgent_item->property_purpose_id==1)
-                                    <p>{{ $currency->currency_icon }}{{ $urgent_item->price }}</p>
-                                @elseif ($urgent_item->property_purpose_id==2)
-                                <p>{{ $currency->currency_icon }}{{ $urgent_item->price }} /
-                                    @if ($urgent_item->period=='Daily')
-                                    <span>{{ $websiteLang->where('lang_key','daily')->first()->custom_text }}</span>
-                                    @elseif ($urgent_item->period=='Monthly')
-                                    <span>{{ $websiteLang->where('lang_key','monthly')->first()->custom_text }}</span>
-                                    @elseif ($urgent_item->period=='Yearly')
-                                    <span>{{ $websiteLang->where('lang_key','yearly')->first()->custom_text }}</span>
-                                    @endif
-                                </p>
-                                @endif
+                            <a href="{{ route('ads.details',$urgent_item->id) }}">{{ $urgent_item->propertyType->type.'- '. config('constants.ad_transactions.'.$urgent_item->transactions) }}</a>
+                                <p><span class="tk">{{ config('constants.ad_transactions.'.$urgent_item->transactions) }}</span></p>
                             </div>
                         </div>
                         </div>
                     </div>
                 </div>
-            @elseif($featured_item->expired_date >= date('Y-m-d'))
-                <div class="col-xl-4 col-sm-6 col-lg-4">
-                    <div class="wsus__top_properties_item">
-                        <div class="row">
-                        <div class="col-xl-6">
-                            <div class="wsus__top_properties_img">
-                            <img src="{{ asset($urgent_item->thumbnail_image) }}" alt="top properties" class="ifg-fluid w-100">
-                            </div>
-                        </div>
-                        <div class="col-xl-6">
-                            <div class="wsus__top_properties_text">
-                            <a href="{{ route('property.details',$urgent_item->slug) }}">{{ $urgent_item->title }}</a>
-
-                                @if ($urgent_item->property_purpose_id==1)
-                                    <p>{{ $currency->currency_icon }}{{ $urgent_item->price }}</p>
-                                @elseif ($urgent_item->property_purpose_id==2)
-                                <p>{{ $currency->currency_icon }}{{ $urgent_item->price }} /
-                                    @if ($urgent_item->period=='Daily')
-                                    <span>{{ $websiteLang->where('lang_key','daily')->first()->custom_text }}</span>
-                                    @elseif ($urgent_item->period=='Monthly')
-                                    <span>{{ $websiteLang->where('lang_key','monthly')->first()->custom_text }}</span>
-                                    @elseif ($urgent_item->period=='Yearly')
-                                    <span>{{ $websiteLang->where('lang_key','yearly')->first()->custom_text }}</span>
-                                    @endif
-                                </p>
-                                @endif
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            @endif
         @endforeach
 
       </div>

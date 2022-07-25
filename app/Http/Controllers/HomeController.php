@@ -41,6 +41,7 @@ use Auth;
 use App\Order;
 use App\CustomPaginator;
 use App\Admin;
+use App\AdsList;
 use App\User;
 use App\Helpers\MailHelper;
 use App\Overview;
@@ -67,6 +68,7 @@ class HomeController extends Controller
         $aboutUs = About::first();
         $overviews=Overview::where('status',1)->get();
         $properties=Property::where('status',1)->get();
+        $adsList=AdsList::where('status',1)->get();
         $sections=HomeSection::all();
         $services=Service::where('status',1)->get();
         $currency=Setting::first();
@@ -84,7 +86,7 @@ class HomeController extends Controller
         $agent_bg=BannerImage::find(26);
         $websiteLang=ManageText::all();
 
-        return view('user.index',compact('sliders', 'aboutUs',     'blogs','seo_text','sections','currency','overviews','services','default_profile_image','testimonials','properties','agents','orders','feature_image','propertyTypes','cities','websiteLang','testimonial_bg','agent_bg','service_bg'));
+        return view('user.index',compact('sliders', 'aboutUs', 'adsList', 'blogs','seo_text','sections','currency','overviews','services','default_profile_image','testimonials','properties','agents','orders','feature_image','propertyTypes','cities','websiteLang','testimonial_bg','agent_bg','service_bg'));
     }
 
 
@@ -628,13 +630,9 @@ class HomeController extends Controller
         ->orderBy('id',$orderBy)
         ->paginate($paginate_qty);
 
-
-
-
         // end query, sorting
 
         $propertyAminities=$propertyAminities->appends($request->all());
-
 
 
         $aminities=Aminity::where('status',1)->orderBy('aminity','asc')->get();
@@ -649,5 +647,105 @@ class HomeController extends Controller
         return view('user.property.search',compact('propertyAminities','aminities','seo_text','banner_image','menus','page_type','currency','propertyTypes','cities','websiteLang'));
     }
 
+    public function adsListing(Request $request){
+        Paginator::useBootstrap();
+        // cheack page type, page type means grid view or listing view
+        $page_type='';
+        if(!$request->page_type){
+            $notify_lang=NotificationText::all();
+            $notification=$notify_lang->where('lang_key','something')->first()->custom_text;
+            $notification=array('messege'=>$notification,'alert-type'=>'error');
+            return redirect()->route('home')->with($notification);
+        }else{
+            if($request->page_type=='list_view'){
+                $page_type=$request->page_type;
+            }else if($request->page_type=='grid_view'){
+                $page_type=$request->page_type;
+            }else{
+                $notify_lang=NotificationText::all();
+                $notification=$notify_lang->where('lang_key','something')->first()->custom_text;
+                $notification=array('messege'=>$notification,'alert-type'=>'error');
+                return redirect()->route('home')->with($notification);
+            }
+        }
+        // end page type
 
+
+        $paginate_qty=CustomPaginator::where('id',2)->first()->qty;
+
+        $query = AdsList::with(['propertyType'])->where('status',1);
+        if($request->sorting_id){
+            $id=$request->sorting_id;
+            if($id==1){
+                $properties= $query->orderBy('id','desc')->paginate($paginate_qty);
+            }else if($id==2){
+                $properties= $query->orderBy('views','desc')->paginate($paginate_qty);
+            }else if($id==3){
+                $properties= $query->where(['is_featured'=>1])->orderBy('id','desc')->paginate($paginate_qty);
+            }else if($id==4){
+                $properties=$query->where(['top_property'=>1])->orderBy('id','desc')->paginate($paginate_qty);
+            }else if($id==5){
+                $properties=$query->orderBy('id','desc')->paginate($paginate_qty);
+            }else if($id==6){
+                $properties=$query->where(['urgent_property'=>1])->orderBy('id','desc')->paginate($paginate_qty);
+            }else if($id==7){
+                $properties= $query->orderBy('id','asc')->paginate($paginate_qty);
+            }
+        }else if($request->property_type){
+            $properties = $query->where('property_type', $request->property_type)->orderBy('id','asc')->paginate($paginate_qty);
+        }
+        else{
+            $properties= $query->orderBy('id','desc')->paginate($paginate_qty);
+        }
+
+        $properties=$properties->appends($request->all());
+        $banner_image=BannerImage::find(1);
+        $default_image=BannerImage::find(15);
+        $menus=Navigation::all();
+        $currency=Setting::first();
+        $seo_text=SeoText::find(2);
+        $propertyTypes=config('constants.ad_transactions');
+        $cities=City::where('status',1)->orderBy('name','asc')->get();
+        $aminities=config('constants.feature_country_home');
+        $websiteLang=ManageText::all();
+        return view('user.ads.index',compact('properties','banner_image','default_image','menus','currency','page_type','seo_text','propertyTypes','cities','aminities','websiteLang'));
+    }
+
+    public function adsDetails($slug){
+        $property=AdsList::where(['status'=>1,'id'=>$slug])->first();
+        if($property){
+
+            $isExpired=false;
+            if($property->expired_date==null){
+                $isExpired=false;
+            }else if($property->expired_date >= date('Y-m-d')){
+                $isExpired=false;
+            }else{
+                $isExpired=true;
+            }
+            if($isExpired){
+                $notify_lang=NotificationText::all();
+                $notification=$notify_lang->where('lang_key','something')->first()->custom_text;
+                $notification=array('messege'=>$notification,'alert-type'=>'error');
+                return redirect()->back()->with($notification);
+            }
+
+            $property->views=$property->views +1;
+            $property->save();
+            $similarProperties= AdsList::where(['status'=>1,'property_type'=>$property->property_type])->where('id', '!=',$property->id)->get()->take(3);
+            $banner_image=BannerImage::find(1);
+            $default_image=BannerImage::find(15);
+            $menus=Navigation::all();
+            $currency=Setting::first();
+            $setting=Setting::first();
+            $websiteLang=ManageText::all();
+            // $propertyReviews = PropertyReview::where(['property_id' => $property->id, 'status' => 1])->paginate(10);
+            return view('user.ads.show',compact('property','banner_image','default_image','menus','currency','setting','similarProperties','websiteLang'));
+        }else{
+            $notify_lang=NotificationText::all();
+            $notification=$notify_lang->where('lang_key','something')->first()->custom_text;
+            $notification=array('messege'=>$notification,'alert-type'=>'error');
+            return redirect()->back()->with($notification);
+        }
+    }
 }

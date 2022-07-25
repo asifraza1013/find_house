@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AddsManagementController;
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
@@ -109,12 +110,19 @@ Route::get('subscription-verify/{token}',[HomeController::class,'subscriptionVer
 Route::get('page/{slug}',[HomeController::class,'customPage'])->name('custom.page');
 Route::get('agents',[HomeController::class,'agent'])->name('agents');
 Route::get('agent',[HomeController::class,'agentDetails'])->name('agent.show');
+Route::get('new-ads',[AddsManagementController::class,'create'])->name('create.ads');
+Route::post('ads',[AddsManagementController::class,'store'])->name('store.ads');
 
 
 Route::get('/pricing-plan',[HomeController::class,'pricingPlan'])->name('pricing.plan');
 Route::get('/properties',[HomeController::class,'properties'])->name('properties');
 Route::get('/property/{slug}',[HomeController::class,'propertDetails'])->name('property.details');
 Route::get('search-property',[HomeController::class,'searchPropertyPage'])->name('search-property');
+
+// Route::get('/pricing-plan',[HomeController::class,'pricingPlan'])->name('pricing.plan');
+Route::get('/ads',[HomeController::class,'adsListing'])->name('ads-listing');
+Route::get('/ads/{slug}',[HomeController::class,'adsDetails'])->name('ads.details');
+// Route::get('search-ads',[HomeController::class,'searchAdsPage'])->name('search-ads');
 
 
 

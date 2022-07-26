@@ -556,6 +556,7 @@ $feature_property=$sections->where('id',4)->first();
                         </div>
                     </div>
                 </div>
+            @endif
         @endforeach
 
       </div>

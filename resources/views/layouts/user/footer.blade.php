@@ -68,6 +68,7 @@ window.addEventListener("load",function(){window.wpcc.init({"border":"{{ $modalC
                 @if ($all_property_menu->status==1)
                 <li><a href="{{ route('properties',['page_type' => 'list_view']) }}">{{ $all_property_menu->navbar }}</a></li>
                 @endif
+                <li><a href="{{ route('create.ads') }}">Create Add</a></li>
 
                 @php
                     $blog_menu=$navigations->where('id',7)->first();

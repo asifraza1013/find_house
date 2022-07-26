@@ -126,7 +126,7 @@
             </li>
             @endif
             <li class="nav-item">
-                <a class="nav-link {{ Route::is('properties') || Route::is('agents') ? 'active' : '' }}" href="{{ route('properties',['page_type' => 'list_view']) }}">Ads List</a>
+                <a class="nav-link {{ Route::is('properties') || Route::is('agents') ? 'active' : '' }}" href="{{ route('ads-listing',['page_type' => 'list_view']) }}">Ads List</a>
             </li>
             @php
                 $property_menu=$navigations->where('id',2)->first();

@@ -856,6 +856,7 @@
                 <div class="wsus__section_heading mb_40 mt_30">
                     <h2>Advirtisments</h2>
                 </div>
+                @if(count($adsList))
                 @foreach ($adsList as $top_item)
                 <div class="ads">
                     <div class="wsus__single_property">
@@ -890,6 +891,9 @@
                     </div>
                 </div>
                 @endforeach
+                @else
+                <h6 class="text-danger">Nothing To Show. <a href="{{route('create.ads')}}">Click</a> to create.</h6>
+                @endif
             </div>
         </div>
     </div>
